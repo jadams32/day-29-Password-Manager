@@ -9,9 +9,9 @@ password = Password()
 
 def generator():
     """Generates a random hard to guess password."""
+    password_input.delete(0, END)
     new_password = password.generate()
     password_input.insert(0, f"{new_password}")
-
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #

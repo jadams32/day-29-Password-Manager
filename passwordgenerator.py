@@ -12,26 +12,18 @@ class Password:
         self.SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
     def generate(self):
+        """Generates a random shuffled password of up to 18 characters"""
 
         nr_letters = random.randint(8, 10)
         nr_symbols = random.randint(2, 4)
         nr_numbers = random.randint(2, 4)
 
-        password_list = []
-
-        for char in range(nr_letters):
-            password_list.append(random.choice(self.LETTERS))
-
-        for char in range(nr_symbols):
-            password_list += random.choice(self.SYMBOLS)
-
-        for char in range(nr_numbers):
-            password_list += random.choice(self.NUMBERS)
+        password_list = [random.choice(self.LETTERS) for _ in range(nr_letters)]
+        password_list += [random.choice(self.SYMBOLS) for _ in range(nr_symbols)]
+        password_list += [random.choice(self.NUMBERS) for _ in range(nr_numbers)]
 
         random.shuffle(password_list)
 
-        password = ""
-        for char in password_list:
-            password += char
+        password = "".join(password_list)
 
         return password
