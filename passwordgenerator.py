@@ -23,7 +23,6 @@ class Password:
         password_list += [random.choice(self.NUMBERS) for _ in range(nr_numbers)]
 
         random.shuffle(password_list)
-
         password = "".join(password_list)
 
         return password
