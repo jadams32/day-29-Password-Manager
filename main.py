@@ -14,20 +14,28 @@ def generator():
 
 
 def save():
-    """Saves entries to a txt file."""
+    """Saves entries to a txt file, and confirms submission"""
 
     website_data = website_input.get()
     email_data = email_input.get()
     password_data = password_input.get()
 
-    messagebox.askokcancel(title="Password Generator", message=f"Is the information correct?\n "
-                                                               f"Website: {website_data}\n Email: {email_data}\n "
-                                                               f"Password: {password_data}")
+    if len(website_data) == 0 or len(email_data) == 0 or len(password_data) == 0:
+        messagebox.showerror(title="Password Generator", message="Fields can not be empty!")
 
-    with open('data.txt', 'a') as file:
-        file.write(f"{website_data} | {email_data} | {password_data}\n")
-    delete_all()
-    messagebox.showinfo(title="Password Generator", message='Password Saved!')
+    elif "@" not in email_data or ".com" not in email_data:
+        messagebox.showerror(title="Password Generator", message="Email is invalid")
+
+    else:
+        valid = messagebox.askokcancel(title="Password Generator", message=f"Is the information correct?\n "
+                                                                           f"Website: {website_data}\n "
+                                                                           f"Email: {email_data}\n "
+                                                                           f"Password: {password_data}")
+        if valid:
+            with open('data.txt', 'a') as file:
+                file.write(f"{website_data} | {email_data} | {password_data}\n")
+            delete_all()
+            messagebox.showinfo(title="Password Generator", message='Password Saved!')
 
 
 def delete_all():
@@ -35,6 +43,18 @@ def delete_all():
     website_input.delete(0, END)
     email_input.delete(0, END)
     password_input.delete(0, END)
+
+# ---------------------------- Validation ------------------------------- #
+
+
+def validation():
+    website_validation = website_input.get()
+    email_validation = email_input.get()
+    password_validation = password_input.get()
+
+    if len(website_validation) == 0 or len(email_validation) == 0 or len(password_validation) ==0:
+        messagebox.showerror(title="Password Generator", message="Fields can not be empty!")
+
 
 
 # ---------------------------- UI SETUP ------------------------------- #
