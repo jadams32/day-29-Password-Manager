@@ -7,9 +7,11 @@ from tkinter import *
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("Password Manager")
-window.config(padx=200, pady=200)
+window.config(padx=20, pady=20)
 
 canvas = Canvas(width=200, height=200)
+lock_logo = PhotoImage(file="logo.png")
+canvas.create_image(100, 100, image=lock_logo)
 canvas.grid(column=2, row=0)
 
 
